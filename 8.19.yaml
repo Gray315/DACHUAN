@@ -4,8 +4,8 @@
 # ========================
 
 proxy-providers:
-  Sub Store:
-    url: "http://192.168.10.1:3008/T3B9dgzBzdRbBF8Aqx7P/download/collection/Sub-Store"
+  机场订阅:
+    url: "订阅地址"
     type: http
     interval: 86400
     health-check:
@@ -45,7 +45,7 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   nameserver:
-    - 223.5.5.5
+    - 223.5.5.5      #运营商的 DNS 有几个填写几个
     - 119.29.29.29
   fake-ip-filter:
     - +.lan
@@ -485,4 +485,5 @@ rule-providers:
   Google / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/google.mrs"}
   Google / IP: {<<: *ip, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geoip/google.mrs"}
   PUBG / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/PUBG/PUBG.list"}  # [新增]
+
 
