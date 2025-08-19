@@ -1,15 +1,11 @@
-# ========================
-# （OpenClash | Meta Smart 内核）
-# ========================
-
 
 # ========================
 # 订阅（proxy-providers）
 # ========================
-proxy-providers:
 
-  机场名称:
-    url: "订阅地址"
+proxy-providers:
+  Sub Store:
+    url: "http://192.168.10.1:3008/T3B9dgzBzdRbBF8Aqx7P/download/collection/Sub-Store"
     type: http
     interval: 86400
     health-check:
@@ -23,8 +19,7 @@ proxy-providers:
 # ========================
 proxies:
   - {name: 直连, type: direct}
-  - {name: 拒绝, type: reject}
-
+  - {name: 拒绝, type: reject}  
   
 # 端口设置（OpenClash 透明代理常用）
 port: 7890
@@ -50,7 +45,7 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   nameserver:
-    - 223.5.5.5       #运营商的 DNS 有几个填几个
+    - 223.5.5.5
     - 119.29.29.29
   fake-ip-filter:
     - +.lan
@@ -86,18 +81,25 @@ default: &default
     - 直连
     - 所有-智选
     - 所有-手选
+    
     - 香港-智选
     - 香港-故转
+    
     - 台湾-智选
     - 台湾-故转
+    
     - 新加坡-智选
     - 新加坡-故转
+    
     - 日本-智选
     - 日本-故转
+    
     - 美国-智选
     - 美国-故转
+    
     - 英国-智选
     - 英国-故转
+    
     - 其他-故转
     - 拒绝
 
@@ -133,25 +135,24 @@ proxy-groups:
   - {name: GitHub, <<: *default}
   - {name: TikTok, <<: *default}
   - {name: Steam, <<: *default}
-  - {name: PUBG MOBILE, <<: *default} 
   - {name: Telegram, <<: *default}
   - {name: Facebook, <<: *default}
   - {name: Twitter(X), <<: *default}
-  - {name: AI, <<: *default}
   - {name: ChatGPT, <<: *default}
   - {name: Meta AI, <<: *default}
+  - {name: AI, <<: *default}
   - {name: Claude, <<: *default}
+  - {name: Stream Media, <<: *default}
   - {name: Perplexity, <<: *default}
   - {name: WhatsApp, <<: *default}
-  - {name: Game, <<: *default}
-  - {name: HBO, <<: *default}
   - {name: Spotify, <<: *default}
   - {name: Crypto, <<: *default}
   - {name: Amazon, <<: *default}
-  - {name: Test, <<: *default}
   - {name: Games, <<: *default}
   - {name: Reddit, <<: *default}
-  - {name: Stream Media, <<: *default}
+  - {name: Game, <<: *default}
+  - {name: Test, <<: *default}
+  - {name: HBO, <<: *default}
   #视频
   - {name: Disney, <<: *default}
   - {name: Netflix, <<: *default}
@@ -400,7 +401,6 @@ rules:
   - RULE-SET,OKX / Domain,Crypto
   - RULE-SET,Bybit / Domain,Crypto
   - RULE-SET,Binance / Domain,Crypto
-  - RULE-SET,PUBG / Domain,PUBG MOBILE       
   - RULE-SET,Youtube / Domain,YouTube         
   - RULE-SET,TikTok / Domain,TikTok
   - RULE-SET,Netflix / Domain,Netflix
