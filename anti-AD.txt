@@ -92117,3 +92117,6 @@
 ||doubleclick.net^
 ||youtube.com/youtubei/v1/log_event?
 ||youtube.com/api/stats/qoe?
+||internetdownloadmanager.com^
+||registeridm.com.com^
+||registeridm.com^
