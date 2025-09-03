@@ -3,16 +3,7 @@
 ||internetdownloadmanager.com^
 ||registeridm.com^
 
-! YouTube 相关广告和追踪域名
-||i.ytimg.com^
-||www.gstatic.com^
-||rr2---sn-i3belney.googlevideo.com^
-||rr4---sn-i3b7knld.googlevideo.com^
-||fonts.googleapis.com^
-||static.doubleclick.net^
-||googleads.g.doubleclick.net^
-||accounts.youtube.com^
-
+! YouTube 核心广告与追踪域名 (安全拦截)
 ||ads.youtube.com^
 ||azabu-u.ac.jp^
 ||couchcoaster.jp^
@@ -25,29 +16,11 @@
 ||ssl-youtube.2cnt.net^
 ||youtube.112.2o7.net^
 ||youtube.2cnt.net^
-||youtube.com/youtubei/v1/log_event^
-||youtube.com/api/stats/qoe^
-||youtube.com/youtubei/v1/log_event^
+||static.doubleclick.net^
+||googleads.g.doubleclick.net^
 ||doubleclick.net^
-||doubleclick.net^$xhr,redirect-rule=noop.txt^
-||yt3.ggpht.com^
-||//m.youtube.com/_get_ads - reject^
-||//pagead2.googlesyndication.com/pagead/ - reject^
-||//s0.2mdn.net/ads/ - reject^
-||//stats.tubemogul.com/stats/ - reject^
-||youtube.local^
-||youtube.com/embed/C-iDzdvIg1Y$domain=biznews.com
-||googlesyndication.com^$domain=blogto.com|youtube.com
-||youtube.com/pagead/
-||youtube.com/youtubei/v1/player/ad_break
-||centent.streamp1ay.
-||cintent.streanplay.
-! Test (Webkit Mobile/Desktop for Youtube)
-@@||youtube.com/get_video_info?$xmlhttprequest,domain=music.youtube.com|tv.youtube.com
-||m.youtube.com/get_midroll_$domain=youtube.com
-! temp disabled, affecting some extensions/browsers
-||www.youtube.com/get_midroll_$domain=youtube.com
-||youtube.com/get_video_info?*adunit$~third-party
+! 注意：i.ytimg.com 可能包含预览图，但也常用于追踪，建议拦截。
+||i.ytimg.com^
 
 
 
