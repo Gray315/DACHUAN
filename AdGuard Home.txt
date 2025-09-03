@@ -129,6 +129,31 @@
 ||//pagead2.googlesyndication.com/pagead/ - reject^
 ||//s0.2mdn.net/ads/ - reject^
 ||//stats.tubemogul.com/stats/ - reject^
+||youtube.local^
+||youtube.com/embed/C-iDzdvIg1Y$domain=biznews.com
+||googlesyndication.com^$domain=blogto.com|youtube.com
+||youtube.com/pagead/
+||youtube.com/youtubei/v1/player/ad_break
+||centent.streamp1ay.
+||cintent.streanplay.
+! Test (Webkit Mobile/Desktop for Youtube)
+@@||youtube.com/get_video_info?$xmlhttprequest,domain=music.youtube.com|tv.youtube.com
+||m.youtube.com/get_midroll_$domain=youtube.com
+! temp disabled, affecting some extensions/browsers
+||www.youtube.com/get_midroll_$domain=youtube.com
+||youtube.com/get_video_info?*adunit$~third-party
+! bit.ly
+returnyoutubedislike.com###top-donors
+pornhub.com#?#:-abp-properties(height: 300px; width: 315px;)
+pornhub.com,youporn.com#?#:-abp-properties(float: right; margin-top: 30px; width: 50%;)
+reddxxx.com#?#.items-center:-abp-contains(/^ad$/)
+reddxxx.com#?#[role="gridcell"]:-abp-contains(/^AD$/)
+redtube.com,tube8.com,tube8.es,tube8.fr,xvideos.com,youjizz.com,youporn.com#?#:-abp-properties(*data:image*)
+redtube.com,tube8.com,tube8.es,tube8.fr,xvideos.com,youjizz.com,youporn.com#?#:-abp-properties(base64)
+redtube.com,tube8.com,tube8.es,tube8.fr,xvideos.com,youjizz.com,youporn.com#?#:-abp-properties(data:)
+redtube.com,tube8.com,tube8.es,tube8.fr,xvideos.com,youjizz.com,youporn.com#?#:-abp-properties(image/)
+$webrtc,websocket,xmlhttprequest,domain=pirateproxy.live|thehiddenbay.com|thepiratebay.org|thepiratebay10.org
+$webrtc,domain=ack.net|allthetests.com|champion.gg|clicknupload.link|colourlovers.com|csgolounge.com|dispatch.com|go4up.com|janjua.tv|jpost.com|megaup.net|netdna-storage.com|ouo.io|ouo.press|sourceforge.net|spanishdict.com|telegram.com|torlock2.com|uptobox.com|uptobox.eu|uptobox.fr|uptobox.link|vidtodo.com|yts.gs|yts.mx
 
 
 
