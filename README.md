@@ -1,23 +1,27 @@
-GitHub加速：
+GitHub 加速
 
 https://gh-proxy.com/
 
-Meta内核规则：
+Meta 内核规则
 
 https://gh-proxy.com/raw.githubusercontent.com/Gray315/DACHUAN/refs/heads/main/Meta.ini
 
-Sub Store脚本：
+Smart 内核 YAML (需开启Smart并添加Model.bin文件）
+
+https://gh-proxy.com/raw.githubusercontent.com/Gray315/DACHUAN/refs/heads/main/Smart.yaml
+
+Sub Store 脚本
 
 https://gh-proxy.com/raw.githubusercontent.com/Gray315/DACHUAN/refs/heads/main/rename.js
 
-ISO小火箭规则：
+ISO 小火箭规则
 
 https://gh-proxy.com/github.com/Gray315/DACHUAN/blob/main/Shadowrocket.conf
 
-AdGuard Home黑名单：
+AdGuard Home 黑名单
 
 https://gh-proxy.com/raw.githubusercontent.com/Gray315/DACHUAN/refs/heads/main/AdGuard%20Home.txt
 
-吃鸡国际服域名：
+PUBG MOBILE 域名
 
 https://gh-proxy.com/raw.githubusercontent.com/Gray315/DACHUAN/refs/heads/main/PUBGMOBILE.list
