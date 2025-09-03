@@ -19,8 +19,7 @@
 ||static.doubleclick.net^
 ||googleads.g.doubleclick.net^
 ||doubleclick.net^
-! 注意：i.ytimg.com 可能包含预览图，但也常用于追踪，建议拦截。
-||i.ytimg.com^
+
 
 
 
