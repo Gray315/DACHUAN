@@ -902,6 +902,7 @@ rules:
   - RULE-SET,HBO / Domain,AI
   - RULE-SET,Spotify / Domain,AI
   - RULE-SET,Steam / Domain,Steam
+  - DOMAIN,gemini.google.com,AI
   - DOMAIN,api.club.gpubgm.com,PUBG MOBILE
   - DOMAIN,sg.tdatamaster.com,PUBG MOBILE
   - DOMAIN,ig-us-notice.igamecj.com,PUBG MOBILE
@@ -982,4 +983,5 @@ rule-providers:
   Youtube / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/youtube.mrs"}
   Google / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/google.mrs"}
   Google / IP: {<<: *ip, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geoip/google.mrs"}
+
 
