@@ -1,1 +1,1 @@
-https://gh-proxy.com/
+GitHub加速：https://gh-proxy.com/
