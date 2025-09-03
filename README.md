@@ -4,11 +4,12 @@ Meta内核规则：https://gh-proxy.com/raw.githubusercontent.com/Gray315/DACHUA
 
 SubStore脚本：https://gh-proxy.com/raw.githubusercontent.com/Gray315/DACHUAN/refs/heads/main/rename.js
 
+ISO小火箭规则：https://gh-proxy.com/github.com/Gray315/DACHUAN/blob/main/Shadowrocket.conf
+
 AdGuard Home黑名单：
 
 https://gh-proxy.com/raw.githubusercontent.com/Gray315/DACHUAN/refs/heads/main/AdGuard%20Home.txt
 
+吃鸡国际服域名：
 
-ISO小火箭规则：https://gh-proxy.com/github.com/Gray315/DACHUAN/blob/main/Shadowrocket.conf
-
-吃鸡国际服域名：https://gh-proxy.com/raw.githubusercontent.com/Gray315/DACHUAN/refs/heads/main/PUBGMOBILE.list
+https://gh-proxy.com/raw.githubusercontent.com/Gray315/DACHUAN/refs/heads/main/PUBGMOBILE.list
