@@ -155,6 +155,16 @@ redtube.com,tube8.com,tube8.es,tube8.fr,xvideos.com,youjizz.com,youporn.com#?#:-
 $webrtc,websocket,xmlhttprequest,domain=pirateproxy.live|thehiddenbay.com|thepiratebay.org|thepiratebay10.org
 $webrtc,domain=ack.net|allthetests.com|champion.gg|clicknupload.link|colourlovers.com|csgolounge.com|dispatch.com|go4up.com|janjua.tv|jpost.com|megaup.net|netdna-storage.com|ouo.io|ouo.press|sourceforge.net|spanishdict.com|telegram.com|torlock2.com|uptobox.com|uptobox.eu|uptobox.fr|uptobox.link|vidtodo.com|yts.gs|yts.mx
 
+||i.ytimg.com^
+||www.gstatic.com^
+||rr2---sn-i3belney.googlevideo.com^
+||rr4---sn-i3b7knld.googlevideo.com^
+||fonts.googleapis.com^
+||static.doubleclick.net^
+||googleads.g.doubleclick.net^
+||accounts.youtube.com^
+
+
 
 
 
