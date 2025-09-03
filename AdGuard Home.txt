@@ -1,3 +1,4 @@
+! IDM
 ||internetdownloadmanager.com^
 ||registeridm.com^
 
@@ -128,6 +129,7 @@
 ||//pagead2.googlesyndication.com/pagead/ - reject^
 ||//s0.2mdn.net/ads/ - reject^
 ||//stats.tubemogul.com/stats/ - reject^
+
 
 
 
