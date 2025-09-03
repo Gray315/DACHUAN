@@ -1,9 +1,10 @@
 ||internetdownloadmanager.com^
 ||registeridm.com^
 ||youtube.com/youtubei/v1/log_event^
-||youtube.com/api/stats/qoe^	
+||youtube.com/api/stats/qoe^
 ||youtube.com/youtubei/v1/log_event^
-||doubleclick.net^	
+||doubleclick.net^
 ||doubleclick.net^$xhr,redirect-rule=noop.txt^
-||yt3.ggpht.com^
+||yt3.ggpht.com
+
 
