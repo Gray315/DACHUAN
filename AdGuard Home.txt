@@ -1,11 +1,6 @@
 ||internetdownloadmanager.com^
 ||registeridm.com^
-||youtube.com/youtubei/v1/log_event^
-||youtube.com/api/stats/qoe^
-||youtube.com/youtubei/v1/log_event^
-||doubleclick.net^
-||doubleclick.net^$xhr,redirect-rule=noop.txt^
-||yt3.ggpht.com
+
 ! 爱奇艺
 ||ad.m.iqiyi.com^
 ||afp.qiyi.com^
@@ -123,170 +118,16 @@
 ||ssl-youtube.2cnt.net^
 ||youtube.112.2o7.net^
 ||youtube.2cnt.net^
-^https?://m.youtube.com/_get_ads - reject
-^https?://pagead2.googlesyndication.com/pagead/ - reject
-^https?://s0.2mdn.net/ads/ - reject
-^https?://stats.tubemogul.com/stats/ - reject
+||youtube.com/youtubei/v1/log_event^
+||youtube.com/api/stats/qoe^
+||youtube.com/youtubei/v1/log_event^
+||doubleclick.net^
+||doubleclick.net^$xhr,redirect-rule=noop.txt^
+||yt3.ggpht.com^
+||//m.youtube.com/_get_ads - reject^
+||//pagead2.googlesyndication.com/pagead/ - reject^
+||//s0.2mdn.net/ads/ - reject^
+||//stats.tubemogul.com/stats/ - reject^
 
-// 爱奇艺
-DOMAIN-SUFFIX,ad.m.iqiyi.com,REJECT
-DOMAIN-SUFFIX,afp.qiyi.com,REJECT
-DOMAIN-SUFFIX,api.cupid.iqiyi.com,REJECT
-DOMAIN-SUFFIX,c.uaa.iqiyi.com,REJECT
-DOMAIN-SUFFIX,ckm.iqiyi.com,REJECT
-DOMAIN-SUFFIX,cloudpush.iqiyi.com,REJECT
-DOMAIN-SUFFIX,cm.passport.iqiyi.com,REJECT
-DOMAIN-SUFFIX,emoticon.sns.iqiyi.com,REJECT
-DOMAIN-SUFFIX,gamecenter.iqiyi.com,REJECT
-DOMAIN-SUFFIX,hotchat-im.iqiyi.com,REJECT
-DOMAIN-SUFFIX,ifacelog.iqiyi.com,REJECT
-DOMAIN-SUFFIX,mbdlog.iqiyi.com,REJECT
-DOMAIN-SUFFIX,policy.video.iqiyi.com,REJECT
-DOMAIN-SUFFIX,rcd.iqiyi.com,REJECT
-IP-CIDR,117.139.18.141/24,REJECT,no-resolve
-IP-CIDR,183.221.247.189/24,REJECT,no-resolve
-
-// 腾讯视频
-DOMAIN-SUFFIX,aiseet.aa.atianqi.com,REJECT
-DOMAIN-SUFFIX,aiseet.atianqi.com,REJECT
-DOMAIN-SUFFIX,btrace.video.qq.com,REJECT
-DOMAIN-SUFFIX,c.l.qq.com,REJECT
-DOMAIN-SUFFIX,dp3.play.aiseet.atianqi.com,REJECT
-DOMAIN-SUFFIX,dp3.qq.com,REJECT
-DOMAIN-SUFFIX,livep.l.aiseet.atianqi.com,REJECT
-DOMAIN-SUFFIX,livep.l.qq.com,REJECT
-DOMAIN-SUFFIX,lives.l.aiseet.atianqi.com,REJECT
-DOMAIN-SUFFIX,lives.l.qq.com,REJECT
-DOMAIN-SUFFIX,livew.l.qq.com,REJECT
-DOMAIN-SUFFIX,mcgi.v.qq.com,REJECT
-DOMAIN-SUFFIX,mdevstat.qqlive.qq.com,REJECT
-DOMAIN-SUFFIX,monitor-uu.play.aiseet.atianqi.com,REJECT
-DOMAIN-SUFFIX,news.l.qq.com,REJECT
-DOMAIN-SUFFIX,news-l.play.aiseet.atianqi.com,REJECT
-DOMAIN-SUFFIX,omgmta1.qq.com,REJECT
-DOMAIN-SUFFIX,otheve.play.aiseet.atianqi.com,REJECT
-DOMAIN-SUFFIX,othstr.play.aiseet.atianqi.com,REJECT
-DOMAIN-SUFFIX,p.l.qq.com,REJECT
-DOMAIN-SUFFIX,p-l.play.aiseet.atianqi.com,REJECT
-DOMAIN-SUFFIX,sdkconfig.play.aiseet.atianqi.com,REJECT
-DOMAIN-SUFFIX,t.l.qq.com,REJECT
-DOMAIN-SUFFIX,t-l.play.aiseet.atianqi.com,REJECT
-DOMAIN-SUFFIX,u.l.qq.com,REJECT
-DOMAIN-SUFFIX,vmindhls.tc.qq.com,REJECT
-DOMAIN-SUFFIX,vv.play.aiseet.atianqi.com,REJECT
-
-// 优酷、土豆
-DOMAIN-SUFFIX,actives.youku.com,REJECT
-DOMAIN-SUFFIX,ad.api.3g.tudou.com,REJECT
-DOMAIN-SUFFIX,ad.api.3g.youku.com,REJECT
-DOMAIN-SUFFIX,ad.api.mobile.youku.com,REJECT
-DOMAIN-SUFFIX,ad.mobile.youku.com,REJECT
-DOMAIN-SUFFIX,adcontrol.tudou.com,REJECT
-DOMAIN-SUFFIX,adplay.tudou.com,REJECT
-DOMAIN-SUFFIX,a-dxk.play.api.3g.youku.com,REJECT
-DOMAIN-SUFFIX,api.gamex.mobile.youku.com,REJECT
-DOMAIN-SUFFIX,atm.youku.com,REJECT
-DOMAIN-SUFFIX,b.smartvideo.youku.com,REJECT
-DOMAIN-SUFFIX,c.yes.youku.com,REJECT
-DOMAIN-SUFFIX,das.api.youku.com,REJECT
-DOMAIN-SUFFIX,das.mobile.youku.com,REJECT
-DOMAIN-SUFFIX,dev-push.m.youku.com,REJECT
-DOMAIN-SUFFIX,dl.g.youku.com,REJECT
-DOMAIN-SUFFIX,e.stat.ykimg.com,REJECT
-DOMAIN-SUFFIX,e.stat.youku.com,REJECT
-DOMAIN-SUFFIX,gamex.mobile.youku.com,REJECT
-DOMAIN-SUFFIX,goods.tudou.com,REJECT
-DOMAIN-SUFFIX,guanggaoad.youku.com,REJECT
-DOMAIN-SUFFIX,hudong.pl.youku.com,REJECT
-DOMAIN-SUFFIX,hz.youku.com,REJECT
-DOMAIN-SUFFIX,iwstat.tudou.com,REJECT
-DOMAIN-SUFFIX,iyes.youku.com,REJECT
-DOMAIN-SUFFIX,l.ykimg.com,REJECT
-DOMAIN-SUFFIX,l.youku.com,REJECT
-DOMAIN-SUFFIX,lstat.youku.com,REJECT
-DOMAIN-SUFFIX,lvip.youku.com,REJECT
-DOMAIN-SUFFIX,mobilemsg.youku.com,REJECT
-DOMAIN-SUFFIX,msg.youku.com,REJECT
-DOMAIN-SUFFIX,nstat.tudou.com,REJECT
-DOMAIN-SUFFIX,p.l.ykimg.com,REJECT
-DOMAIN-SUFFIX,p.l.youku.com,REJECT
-DOMAIN-SUFFIX,passport-log.youku.com,REJECT
-DOMAIN-SUFFIX,p-log.ykimg.com,REJECT
-DOMAIN-SUFFIX,push.m.youku.com,REJECT
-DOMAIN-SUFFIX,r.l.youku.com,REJECT
-DOMAIN-SUFFIX,s.p.youku.com,REJECT
-DOMAIN-SUFFIX,sdk.m.youku.com,REJECT
-DOMAIN-SUFFIX,stat.tudou.com,REJECT
-DOMAIN-SUFFIX,stat.youku.com,REJECT
-DOMAIN-SUFFIX,static.lstat.youku.com,REJECT
-DOMAIN-SUFFIX,statis.api.3g.youku.com,REJECT
-DOMAIN-SUFFIX,stats.tudou.com,REJECT
-DOMAIN-SUFFIX,store.tv.api.3g.youku.com,REJECT
-DOMAIN-SUFFIX,store.xl.api.3g.youku.com,REJECT
-DOMAIN-SUFFIX,tdrec.youku.com,REJECT
-DOMAIN-SUFFIX,test.ott.youku.com,REJECT
-DOMAIN-SUFFIX,test.sdk.m.youku.com,REJECT
-DOMAIN-SUFFIX,urchin.lstat.youku.com,REJECT
-DOMAIN-SUFFIX,v.l.youku.com,REJECT
-DOMAIN-SUFFIX,val.api.youku.com,REJECT
-DOMAIN-SUFFIX,wan.youku.com,REJECT
-DOMAIN-SUFFIX,ykatr.youku.com,REJECT
-DOMAIN-SUFFIX,ykrec.youku.com,REJECT
-DOMAIN-SUFFIX,ykrectab.youku.com,REJECT
-
-// Youtube
-DOMAIN-SUFFIX,ads.youtube.com,REJECT
-DOMAIN-SUFFIX,azabu-u.ac.jp,REJECT
-DOMAIN-SUFFIX,couchcoaster.jp,REJECT
-DOMAIN-SUFFIX,crt.comodoca.com,REJECT
-DOMAIN-SUFFIX,delivery.dmkt-sp.jp,REJECT
-DOMAIN-SUFFIX,ehg-youtube.hitbox.com,REJECT
-DOMAIN-SUFFIX,m-78.jp,REJECT
-DOMAIN-SUFFIX,nichibenren.or.jp,REJECT
-DOMAIN-SUFFIX,nicorette.co.kr,REJECT
-DOMAIN-SUFFIX,ssl-youtube.2cnt.net,REJECT
-DOMAIN-SUFFIX,youtube.112.2o7.net,REJECT
-DOMAIN-SUFFIX,youtube.2cnt.net,REJECT
-
-[URL Rewrite]
-
-// 爱奇艺
-^https?://.+/videos/other/.+.f4v - reject
-^https?://iface.iqiyi.com/api/getNewAdInfo? - reject
-^https?://msga.cupid.iqiyi.com - reject
-
-// 优酷
-^https?://ad.api.3g.youku.com - reject
-^https?://api.appsdk.soku.com/bg/r - reject
-^https?://api.appsdk.soku.com/tag/r - reject
-^https?://api.k.sohu.com/api/channel/ad/ - reject
-^https?://api.mobile.youku.com/adv/ - reject
-^https?://api.mobile.youku.com/initial? http://burpsuite.applinzi.com/Network/?configuration_token=& 302
-^https?://api.mobile.youku.com/layout/search/hot/word - reject
-^https?://appsdk.soku.com/bg/r? - reject
-^https?://atm.youku.com - reject
-^https?://burpsuite.applinzi.com/common/v5/play http://burpsuite.applinzi.com/Network/?configuration_token=& header
-^https?://d.m6.cms.mobile.youku.com/player/domain_name? http://burpsuite.applinzi.com/Network/?configuration_token=& header
-^https?://hd.api.mobile.youku.com/common/v3/hudong/new - reject
-^https?://hd.mobile.youku.com/common/v3/hudong/new - reject
-^https?://home.mobile.youku.com/layout/iphone/v5/home/page? http://burpsuite.applinzi.com/Network/?configuration_token=& header
-^https?://i.gtimg.cn/ https://i.gtimg.cn/ 302
-^https?://i-play.mobile.youku.com/common/v5/play? http://burpsuite.applinzi.com/Network/?configuration_token=&dev=true& header
-^https?://l.youku.com - reject
-^https?://m.youku.com/video/libs/iwt.js - reject
-^https?://pic.k.sohu.com/img8/wb/tj/ - reject
-^https?://pl.youku.com - reject
-^https?://r.l.youku.com/rec_at_click - reject
-^https://ups.youku.com/ups/get.json? http://burpsuite.applinzi.com/Network/?configuration_token=&dev=true& 302
-
-// Youtube
-^https?://m.youtube.com/_get_ads - reject
-^https?://pagead2.googlesyndication.com/pagead/ - reject
-^https?://s0.2mdn.net/ads/ - reject
-^https?://stats.tubemogul.com/stats/ - reject
-
-^https?://(www.)?g.cn https://www.google.com.hk 302
-^https?://(www.)?google.cn https://www.google.com.hk 302
-^https?://youtube.com https://www.youtube.com 302
 
 
