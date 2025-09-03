@@ -4,6 +4,6 @@ Meta内核规则：https://gh-proxy.com/raw.githubusercontent.com/Gray315/DACHUA
 
 SubStore脚本：https://gh-proxy.com/raw.githubusercontent.com/Gray315/DACHUAN/refs/heads/main/rename.js
 
-AdGuard Home：https://gh-proxy.com/raw.githubusercontent.com/Gray315/DACHUAN/refs/heads/main/AdGuard%20Home.txt
+DNS黑名单：https://gh-proxy.com/raw.githubusercontent.com/Gray315/DACHUAN/refs/heads/main/AdGuard%20Home.txt
 
 ISO小火箭规则：https://gh-proxy.com/github.com/Gray315/DACHUAN/blob/main/Shadowrocket.conf
