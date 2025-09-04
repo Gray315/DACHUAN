@@ -3,4 +3,30 @@
 ||internetdownloadmanager.com^
 ||registeridm.com^
 
-! YouTube 核心广告与追踪域名 (安全拦截)
+! YouTube 广告和跟踪拦截规则
+||youtube.com/api/stats/qoe^
+||youtube.com/api/stats/atr^
+||youtube.com/youtubei/v1/log_event^
+||doubleclick.net^
+||doubleclick.net^$xhr
+||googleads.g.doubleclick.net^
+||googleads.g.doubleclick.net/pagead/id
+||googletagservices.com^
+||googlesyndication.com^
+||youtube.com/api/stats/ads^
+||youtube.com/ptracking^
+||youtube.com/pagead^
+||youtube.com/get_midroll_info^
+||yt3.ggpht.com^$image,domain=~yt3.ggpht.com
+
+! 阻止 YouTube 广告相关的脚本
+||youtube.com/s/player/*/player_ias.vflset/*.js
+||youtube.com/s/player/*/base.js
+||youtube.com/yts/jsbin/player_*/base.js
+||youtube.com/yts/jsbin/player_*/en_US/base.js
+
+! 阻止 YouTube 广告请求
+||youtube.com/api/stats/ads^
+||youtube.com/pagead/
+||youtube.com/ptracking
+||youtube.com/get_midroll_
