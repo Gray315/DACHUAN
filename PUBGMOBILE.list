@@ -1,8 +1,8 @@
-DOMAIN,api.club.gpubgm.com
-DOMAIN,sg.tdatamaster.com
-DOMAIN,ig-us-notice.igamecj.com
-DOMAIN,ig-us-sdkapi.igamecj.com
-DOMAIN,cloud.gsdk.proximabeta.com
-DOMAIN,cloud.vmp.onezapp.com
-DOMAIN,mgl.lobby.igamecj.com
-DOMAIN,napubgm.broker.amsoveasea.com
+DOMAIN-SUFFIX,api.club.gpubgm.com
+DOMAIN-SUFFIX,sg.tdatamaster.com
+DOMAIN-SUFFIX,ig-us-notice.igamecj.com
+DOMAIN-SUFFIX,ig-us-sdkapi.igamecj.com
+DOMAIN-SUFFIX,cloud.gsdk.proximabeta.com
+DOMAIN-SUFFIX,cloud.vmp.onezapp.com
+DOMAIN-SUFFIX,mgl.lobby.igamecj.com
+DOMAIN-SUFFIX,napubgm.broker.amsoveasea.com
