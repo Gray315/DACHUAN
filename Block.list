@@ -2,5 +2,11 @@ DOMAIN-SUFFIX,adobe.com
 DOMAIN-SUFFIX,adobedtm.com
 DOMAIN-SUFFIX,adobe.io
 DOMAIN-SUFFIX,omtrdc.net
+
 DOMAIN-SUFFIX,internetdownloadmanager.com
 DOMAIN-SUFFIX,registeridm.com
+
+DOMAIN-SUFFIX,accounts.youtube.com
+DOMAIN-SUFFIX,studio.youtube.com
+DOMAIN-SUFFIX,googleads.g.doubleclick.net
+DOMAIN-SUFFIX,static.doubleclick.net
