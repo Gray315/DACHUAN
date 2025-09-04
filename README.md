@@ -22,6 +22,11 @@ AdGuard Home 黑名单
 
 https://gh-proxy.com/raw.githubusercontent.com/Gray315/DACHUAN/refs/heads/main/AdGuard%20Home.txt
 
+
+视频源
+
+https://gh-proxy.com/raw.githubusercontent.com/Gray315/DACHUAN/refs/heads/main/config.json
+
 PUBG MOBILE 域名
 
 https://gh-proxy.com/raw.githubusercontent.com/Gray315/DACHUAN/refs/heads/main/PUBGMOBILE.list
