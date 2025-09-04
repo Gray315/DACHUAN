@@ -1,18 +1,8 @@
-  # PUBG MOBILE 游戏规则
-# 更新时间: 2025-09-03
-
-# 域名规则
-domain:api.club.gpubgm.com,PUBG MOBILE
-domain:sg.tdatamaster.com,PUBG MOBILE
-domain:ig-us-notice.igamecj.com,PUBG MOBILE
-domain:ig-us-sdkapi.igamecj.com,PUBG MOBILE
-domain:cloud.gsdk.proximabeta.com,PUBG MOBILE
-domain:cloud.vmp.onezapp.com,PUBG MOBILE
-domain:mgl.lobby.igamecj.com,PUBG MOBILE
-domain:napubgm.broker.amsoveasea.com,PUBG MOBILE
-
-# IP 规则
-# ip-cidr:1.2.3.4/32,PUBG MOBILE
-
-# 其他规则
-# 可以根据需要添加更多规则
+DOMAIN-SUFFIX,api.club.gpubgm.com
+DOMAIN-SUFFIX,sg.tdatamaster.com
+DOMAIN-SUFFIX,ig-us-notice.igamecj.com
+DOMAIN-SUFFIX,ig-us-sdkapi.igamecj.com
+DOMAIN-SUFFIX,cloud.gsdk.proximabeta.com
+DOMAIN-SUFFIX,cloud.vmp.onezapp.com
+DOMAIN-SUFFIX,mgl.lobby.igamecj.com
+DOMAIN-SUFFIX,napubgm.broker.amsoveasea.com,PUBG MOBILE
