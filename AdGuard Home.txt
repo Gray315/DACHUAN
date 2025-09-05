@@ -13,6 +13,21 @@
 ||mirror.internetdownloadmanager.com^
 ||mirror2.internetdownloadmanager.com^
 ||mirror3.internetdownloadmanager.com^
+||mirror.internetdownloadmanager.com^
+||mirror1.internetdownloadmanager.com^
+||mirror2.internetdownloadmanager.com^
+||mirror4.internetdownloadmanager.com^
+||mirror3.internetdownloadmanager.com^
+||mirror5.internetdownloadmanager.com^
+||test.internetdownloadmanager.com^
+||secure.internetdownloadmanager.com^
+||www.internetdownloadmanager.com^
+||registeridm.com^
+||secure.registeridm.com^
+||www.registeridm.com^
+||tonec.com^
+||www.tonec.com^
+||internetdownloadmanager.com^
 
 ! YouTube 广告和跟踪拦截规则
 ||youtube.com/api/stats/qoe^
@@ -41,4 +56,5 @@
 ||youtube.com/pagead/
 ||youtube.com/ptracking
 ||youtube.com/get_midroll_
+
 
