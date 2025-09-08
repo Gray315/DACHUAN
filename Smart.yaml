@@ -1,36 +1,22 @@
+# 端口和常规设置
 port: 7890
-   # 本地 HTTP 代理端口。
 socks-port: 7891
-   # 本地 SOCKS5 代理端口。
 redir-port: 7892
-   # Redir 透明代理端口（主要在 Linux/macOS，用 iptables/nftables 转发 TCP）。
 mixed-port: 7893
-   # 复合端口，HTTP+SOCKS 共用；启用它时通常可省略 port 与 socks-port。
 tproxy-port: 7894
-   # TProxy 透明代理端口（Linux 用，支持 TCP/UDP）。Windows 一般不用。
 allow-lan: true
-   # 允许局域网设备连到本机代理。
 bind-address: "*"
-   # 监听地址；"*" 等于 0.0.0.0（所有网卡）。
-ipv6: false
-   # 启用 IPv6。
+ipv6: true
 unified-delay: true
-   # 统一/更准确的延迟统计与测速。
 tcp-concurrent: true
-   # 并发 TCP 拨号（Happy Eyeballs），谁先连上用谁，降低首连延迟。
 log-level: warning
-   # 日志级别（silent/error/warning/info/debug）。
 mode: rule
 find-process-mode: strict
-   # 进程名查询模式（off/strict/always），off 关闭。
 global-client-fingerprint: chrome
-   #全局 TLS 指纹伪装（如 chrome）。
 keep-alive-idle: 600
-   # TCP KeepAlive 空闲秒数。
 keep-alive-interval: 15
-   # KeepAlive 探测间隔秒数。
 disable-keep-alive: false
-   # 是否关闭 KeepAlive（false 表示启用 KeepAlive）。
+
 proxy-providers:
     #远程/本地“节点提供器”。从订阅地址或文件拉取一组 proxies，可自动更新与健康检查。
    机场名:
@@ -46,49 +32,50 @@ proxies:
    #手动写在配置里的“单个节点”列表（静态节点）。
   - {name: 直连, type: direct}
   - {name: 拒绝, type: reject}
+
+# 配置文件
 profile:
-   #客户端会话与记忆设置，如是否记住策略组已选项（store-selected）、是否持久化 Fake-IP 等。
   store-selected: true
   store-fake-ip: true
+
+# 流量嗅探
 sniffer:
-   #客户端会话与记忆设置，如是否记住策略组已选项（store-selected）、是否持久化 Fake-IP 等。
   enable: true
   sniff:
-    HTTP:
-      ports:
-        - 80
-        - 8080-8880
-      override-destination: true
-    TLS:
-      ports:
-        - 443
-        - 8443
-    QUIC:
-      ports:
-        - 443
-        - 8443
+    HTTP: { ports: [80, 8080-8880], override-destination: true }
+    TLS: { ports: [443, 8443] }
+    QUIC: { ports: [443, 8443] }
   force-domain:
     - +.v2ex.com
   skip-domain:
     - +.baidu.com
+
+# DNS 设置
 dns:
-   #内置 DNS 解析与分流。设置 enhanced-mode: fake-ip/redir-host、nameserver、fallback、nameserver-policy 等。
   enable: true
   listen: 0.0.0.0:7874
   ipv6: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.20.0.1/16
   nameserver:
-  - 183.221.253.100
-  - 211.137.96.205
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+    - https://dns.cloudflare.com/dns-query
+  fallback:
+    - https://1.0.0.1/dns-query
+    - https://dns.google/dns-query
+  nameserver-policy:
+    'geosite:cn': ['https://dns.alidns.com/dns-query']
+    'geosite:geolocation-!cn': ['https://dns.cloudflare.com/dns-query']
   fake-ip-filter:
-  - +.lan
-  - +.local
-  - geosite:cn
-  - +.bingyun.ink
-  - +.fafhjkah.xyz
+    - +.lan
+    - +.local
+    - geosite:cn
+    - +.bingyun.ink
+    - +.fafhjkah.xyz
+
+# TUN 模式
 tun:
-   #开启 TUN 模式接管系统流量（透明代理）。常见项：stack、auto-route、dns-hijack、strict-route。
   enable: false
   stack: gvisor
   endpoint-independent-nat: true
@@ -97,597 +84,77 @@ tun:
   auto-redirect: false
   strict-route: false
 
-default: &default
-  type: select
-  proxies:
-    - 直连
-    - 所有-手动
-    - 所有-自动
-    - 香港-故转
-    - 台湾-故转
-    - 日本-故转
-    - 新加坡-故转
-    - 韩国-故转
-    - 美国-故转
-    - 英国-故转
-    - 其他-故转
-    - 拒绝
+# 定义可复用的锚点
+proxy-list: &global_proxies
+  - 直连
+  - 所有-智选
+  - 所有-故转
+  - 所有-手选
+  - 香港-智选
+  - 香港-故转
+  - 香港-手选
+  - 台湾-智选
+  - 台湾-故转
+  - 台湾-手选
+  - 新加坡-智选
+  - 新加坡-故转
+  - 新加坡-手选
+  - 韩国-智选
+  - 韩国-故转
+  - 韩国-手选
+  - 日本-智选
+  - 日本-故转
+  - 日本-手选
+  - 美国-智选
+  - 美国-故转
+  - 美国-手选
+  - 其他-智选
+  - 其他-故转
+  - 其他-手选
+  - 拒绝
 
+# 代理组
 proxy-groups:
-  - name: 国内
-    type: select
-    proxies:
-    - 直连
-    - 所有-智选
-    - 所有-故转
-    - 所有-手选
-    - 香港-智选
-    - 香港-故转
-    - 香港-手选
-    - 台湾-智选
-    - 台湾-故转
-    - 台湾-手选
-    - 新加坡-智选
-    - 新加坡-故转
-    - 新加坡-手选
-    - 韩国-智选
-    - 韩国-故转
-    - 韩国-手选
-    - 日本-智选
-    - 日本-故转
-    - 日本-手选
-    - 美国-智选
-    - 美国-故转
-    - 美国-手选
-    - 其他-智选
-    - 其他-故转
-    - 其他-手选
-    - 拒绝
-  - name: 国外
-    type: select
-    proxies:
-    - 直连
-    - 所有-智选
-    - 所有-故转
-    - 所有-手选
-    - 香港-智选
-    - 香港-故转
-    - 香港-手选
-    - 台湾-智选
-    - 台湾-故转
-    - 台湾-手选
-    - 新加坡-智选
-    - 新加坡-故转
-    - 新加坡-手选
-    - 韩国-智选
-    - 韩国-故转
-    - 韩国-手选
-    - 日本-智选
-    - 日本-故转
-    - 日本-手选
-    - 美国-智选
-    - 美国-故转
-    - 美国-手选
-    - 其他-智选
-    - 其他-故转
-    - 其他-手选
-    - 拒绝
-  - name: 其他
-    type: select
-    proxies:
-    - 直连
-    - 所有-智选
-    - 所有-故转
-    - 所有-手选
-    - 香港-智选
-    - 香港-故转
-    - 香港-手选
-    - 台湾-智选
-    - 台湾-故转
-    - 台湾-手选
-    - 新加坡-智选
-    - 新加坡-故转
-    - 新加坡-手选
-    - 韩国-智选
-    - 韩国-故转
-    - 韩国-手选
-    - 日本-智选
-    - 日本-故转
-    - 日本-手选
-    - 美国-智选
-    - 美国-故转
-    - 美国-手选
-    - 其他-智选
-    - 其他-故转
-    - 其他-手选
-    - 拒绝
-  - name: AI
-    type: select
-    proxies:
-    - 直连
-    - 所有-智选
-    - 所有-故转
-    - 所有-手选
-    - 香港-智选
-    - 香港-故转
-    - 香港-手选
-    - 台湾-智选
-    - 台湾-故转
-    - 台湾-手选
-    - 新加坡-智选
-    - 新加坡-故转
-    - 新加坡-手选
-    - 韩国-智选
-    - 韩国-故转
-    - 韩国-手选
-    - 日本-智选
-    - 日本-故转
-    - 日本-手选
-    - 美国-智选
-    - 美国-故转
-    - 美国-手选
-    - 其他-智选
-    - 其他-故转
-    - 其他-手选
-    - 拒绝
-  - name: GitHub
-    type: select
-    proxies:
-    - 直连
-    - 所有-智选
-    - 所有-故转
-    - 所有-手选
-    - 香港-智选
-    - 香港-故转
-    - 香港-手选
-    - 台湾-智选
-    - 台湾-故转
-    - 台湾-手选
-    - 新加坡-智选
-    - 新加坡-故转
-    - 新加坡-手选
-    - 韩国-智选
-    - 韩国-故转
-    - 韩国-手选
-    - 日本-智选
-    - 日本-故转
-    - 日本-手选
-    - 美国-智选
-    - 美国-故转
-    - 美国-手选
-    - 其他-智选
-    - 其他-故转
-    - 其他-手选
-    - 拒绝
-  - name: Google
-    type: select
-    proxies:
-    - 直连
-    - 所有-智选
-    - 所有-故转
-    - 所有-手选
-    - 香港-智选
-    - 香港-故转
-    - 香港-手选
-    - 台湾-智选
-    - 台湾-故转
-    - 台湾-手选
-    - 新加坡-智选
-    - 新加坡-故转
-    - 新加坡-手选
-    - 韩国-智选
-    - 韩国-故转
-    - 韩国-手选
-    - 日本-智选
-    - 日本-故转
-    - 日本-手选
-    - 美国-智选
-    - 美国-故转
-    - 美国-手选
-    - 其他-智选
-    - 其他-故转
-    - 其他-手选
-    - 拒绝
-  - name: YouTube
-    type: select
-    proxies:
-    - 直连
-    - 所有-智选
-    - 所有-故转
-    - 所有-手选
-    - 香港-智选
-    - 香港-故转
-    - 香港-手选
-    - 台湾-智选
-    - 台湾-故转
-    - 台湾-手选
-    - 新加坡-智选
-    - 新加坡-故转
-    - 新加坡-手选
-    - 韩国-智选
-    - 韩国-故转
-    - 韩国-手选
-    - 日本-智选
-    - 日本-故转
-    - 日本-手选
-    - 美国-智选
-    - 美国-故转
-    - 美国-手选
-    - 其他-智选
-    - 其他-故转
-    - 其他-手选
-    - 拒绝
-  - name: PUBG MOBILE
-    type: select
-    proxies:
-    - 直连
-    - 所有-智选
-    - 所有-故转
-    - 所有-手选
-    - 香港-智选
-    - 香港-故转
-    - 香港-手选
-    - 台湾-智选
-    - 台湾-故转
-    - 台湾-手选
-    - 新加坡-智选
-    - 新加坡-故转
-    - 新加坡-手选
-    - 韩国-智选
-    - 韩国-故转
-    - 韩国-手选
-    - 日本-智选
-    - 日本-故转
-    - 日本-手选
-    - 美国-智选
-    - 美国-故转
-    - 美国-手选
-    - 其他-智选
-    - 其他-故转
-    - 其他-手选
-    - 拒绝
-  - name: Facebook
-    type: select
-    proxies:
-    - 直连
-    - 所有-智选
-    - 所有-故转
-    - 所有-手选
-    - 香港-智选
-    - 香港-故转
-    - 香港-手选
-    - 台湾-智选
-    - 台湾-故转
-    - 台湾-手选
-    - 新加坡-智选
-    - 新加坡-故转
-    - 新加坡-手选
-    - 韩国-智选
-    - 韩国-故转
-    - 韩国-手选
-    - 日本-智选
-    - 日本-故转
-    - 日本-手选
-    - 美国-智选
-    - 美国-故转
-    - 美国-手选
-    - 其他-智选
-    - 其他-故转
-    - 其他-手选
-    - 拒绝
-  - name: Telegram
-    type: select
-    proxies:
-    - 直连
-    - 所有-智选
-    - 所有-故转
-    - 所有-手选
-    - 香港-智选
-    - 香港-故转
-    - 香港-手选
-    - 台湾-智选
-    - 台湾-故转
-    - 台湾-手选
-    - 新加坡-智选
-    - 新加坡-故转
-    - 新加坡-手选
-    - 韩国-智选
-    - 韩国-故转
-    - 韩国-手选
-    - 日本-智选
-    - 日本-故转
-    - 日本-手选
-    - 美国-智选
-    - 美国-故转
-    - 美国-手选
-    - 其他-智选
-    - 其他-故转
-    - 其他-手选
-    - 拒绝
-  - name: Twitter(X)
-    type: select
-    proxies:
-    - 直连
-    - 所有-智选
-    - 所有-故转
-    - 所有-手选
-    - 香港-智选
-    - 香港-故转
-    - 香港-手选
-    - 台湾-智选
-    - 台湾-故转
-    - 台湾-手选
-    - 新加坡-智选
-    - 新加坡-故转
-    - 新加坡-手选
-    - 韩国-智选
-    - 韩国-故转
-    - 韩国-手选
-    - 日本-智选
-    - 日本-故转
-    - 日本-手选
-    - 美国-智选
-    - 美国-故转
-    - 美国-手选
-    - 其他-智选
-    - 其他-故转
-    - 其他-手选
-    - 拒绝
-  - name: TikTok
-    type: select
-    proxies:
-    - 直连
-    - 所有-智选
-    - 所有-故转
-    - 所有-手选
-    - 香港-智选
-    - 香港-故转
-    - 香港-手选
-    - 台湾-智选
-    - 台湾-故转
-    - 台湾-手选
-    - 新加坡-智选
-    - 新加坡-故转
-    - 新加坡-手选
-    - 韩国-智选
-    - 韩国-故转
-    - 韩国-手选
-    - 日本-智选
-    - 日本-故转
-    - 日本-手选
-    - 美国-智选
-    - 美国-故转
-    - 美国-手选
-    - 其他-智选
-    - 其他-故转
-    - 其他-手选
-    - 拒绝
-  - name: Disney
-    type: select
-    proxies:
-    - 直连
-    - 所有-智选
-    - 所有-故转
-    - 所有-手选
-    - 香港-智选
-    - 香港-故转
-    - 香港-手选
-    - 台湾-智选
-    - 台湾-故转
-    - 台湾-手选
-    - 新加坡-智选
-    - 新加坡-故转
-    - 新加坡-手选
-    - 韩国-智选
-    - 韩国-故转
-    - 韩国-手选
-    - 日本-智选
-    - 日本-故转
-    - 日本-手选
-    - 美国-智选
-    - 美国-故转
-    - 美国-手选
-    - 其他-智选
-    - 其他-故转
-    - 其他-手选
-    - 拒绝
-  - name: Netflix
-    type: select
-    proxies:
-    - 直连
-    - 所有-智选
-    - 所有-故转
-    - 所有-手选
-    - 香港-智选
-    - 香港-故转
-    - 香港-手选
-    - 台湾-智选
-    - 台湾-故转
-    - 台湾-手选
-    - 新加坡-智选
-    - 新加坡-故转
-    - 新加坡-手选
-    - 韩国-智选
-    - 韩国-故转
-    - 韩国-手选
-    - 日本-智选
-    - 日本-故转
-    - 日本-手选
-    - 美国-智选
-    - 美国-故转
-    - 美国-手选
-    - 其他-智选
-    - 其他-故转
-    - 其他-手选
-    - 拒绝
-  - name: Apple
-    type: select
-    proxies:
-    - 直连
-    - 所有-智选
-    - 所有-故转
-    - 所有-手选
-    - 香港-智选
-    - 香港-故转
-    - 香港-手选
-    - 台湾-智选
-    - 台湾-故转
-    - 台湾-手选
-    - 新加坡-智选
-    - 新加坡-故转
-    - 新加坡-手选
-    - 韩国-智选
-    - 韩国-故转
-    - 韩国-手选
-    - 日本-智选
-    - 日本-故转
-    - 日本-手选
-    - 美国-智选
-    - 美国-故转
-    - 美国-手选
-    - 其他-智选
-    - 其他-故转
-    - 其他-手选
-    - 拒绝
-  - name: Steam
-    type: select
-    proxies:
-    - 直连
-    - 所有-智选
-    - 所有-故转
-    - 所有-手选
-    - 香港-智选
-    - 香港-故转
-    - 香港-手选
-    - 台湾-智选
-    - 台湾-故转
-    - 台湾-手选
-    - 新加坡-智选
-    - 新加坡-故转
-    - 新加坡-手选
-    - 韩国-智选
-    - 韩国-故转
-    - 韩国-手选
-    - 日本-智选
-    - 日本-故转
-    - 日本-手选
-    - 美国-智选
-    - 美国-故转
-    - 美国-手选
-    - 其他-智选
-    - 其他-故转
-    - 其他-手选
-    - 拒绝
-  - name: Nvidia
-    type: select
-    proxies:
-    - 直连
-    - 所有-智选
-    - 所有-故转
-    - 所有-手选
-    - 香港-智选
-    - 香港-故转
-    - 香港-手选
-    - 台湾-智选
-    - 台湾-故转
-    - 台湾-手选
-    - 新加坡-智选
-    - 新加坡-故转
-    - 新加坡-手选
-    - 韩国-智选
-    - 韩国-故转
-    - 韩国-手选
-    - 日本-智选
-    - 日本-故转
-    - 日本-手选
-    - 美国-智选
-    - 美国-故转
-    - 美国-手选
-    - 其他-智选
-    - 其他-故转
-    - 其他-手选
-    - 拒绝
-  - name: Microsoft
-    type: select
-    proxies:
-    - 直连
-    - 所有-智选
-    - 所有-故转
-    - 所有-手选
-    - 香港-智选
-    - 香港-故转
-    - 香港-手选
-    - 台湾-智选
-    - 台湾-故转
-    - 台湾-手选
-    - 新加坡-智选
-    - 新加坡-故转
-    - 新加坡-手选
-    - 韩国-智选
-    - 韩国-故转
-    - 韩国-手选
-    - 日本-智选
-    - 日本-故转
-    - 日本-手选
-    - 美国-智选
-    - 美国-故转
-    - 美国-手选
-    - 其他-智选
-    - 其他-故转
-    - 其他-手选
-    - 拒绝
-  - name: Block
-    type: select
-    proxies:
-    - 直连
-    - 所有-智选
-    - 所有-故转
-    - 所有-手选
-    - 香港-智选
-    - 香港-故转
-    - 香港-手选
-    - 台湾-智选
-    - 台湾-故转
-    - 台湾-手选
-    - 新加坡-智选
-    - 新加坡-故转
-    - 新加坡-手选
-    - 韩国-智选
-    - 韩国-故转
-    - 韩国-手选
-    - 日本-智选
-    - 日本-故转
-    - 日本-手选
-    - 美国-智选
-    - 美国-故转
-    - 美国-手选
-    - 其他-智选
-    - 其他-故转
-    - 其他-手选
-    - 拒绝
+  - { name: 国内, type: select, proxies: *global_proxies }
+  - { name: 国外, type: select, proxies: *global_proxies }
+  - { name: 其他, type: select, proxies: *global_proxies }
+  - { name: AI, type: select, proxies: *global_proxies }
+  - { name: GitHub, type: select, proxies: *global_proxies }
+  - { name: Google, type: select, proxies: *global_proxies }
+  - { name: YouTube, type: select, proxies: *global_proxies }
+  - { name: PUBG MOBILE, type: select, proxies: *global_proxies }
+  - { name: Facebook, type: select, proxies: *global_proxies }
+  - { name: Telegram, type: select, proxies: *global_proxies }
+  - { name: Twitter(X), type: select, proxies: *global_proxies }
+  - { name: TikTok, type: select, proxies: *global_proxies }
+  - { name: Disney, type: select, proxies: *global_proxies }
+  - { name: Netflix, type: select, proxies: *global_proxies }
+  - { name: Apple, type: select, proxies: *global_proxies }
+  - { name: Steam, type: select, proxies: *global_proxies }
+  - { name: Nvidia, type: select, proxies: *global_proxies }
+  - { name: Microsoft, type: select, proxies: *global_proxies }
+  - { name: Block, type: select, proxies: *global_proxies }
+
+  # --- 功能性策略组 ---
   - name: 所有-智选
     type: smart
     include-all: true
     policy-priority: ".*(美国|US).*:0.8;.*(香港|HK).*:1.2"
     uselightgbm: false
     collectdata: true
-    health-check:
-        enable: true
-        url: https://www.gstatic.com/generate_204
-        interval: 60
-        tolerance: 2
+    health-check: { enable: true, url: 'https://www.gstatic.com/generate_204', interval: 60, tolerance: 2 }
     strategy: sticky-sessions
     interval: 120
     proxies:
-    - 所有-手选
+      - 所有-手选
     filter: "^((?!(直连|拒绝)).)*$"
   - name: 所有-故转
     type: fallback
     interval: 120
     lazy: false
     proxies:
-    - 所有-手选
-    - 所有-智选
+      - 所有-手选
+      - 所有-智选
   - name: 所有-手选
     type: select
     include-all: true
@@ -697,23 +164,19 @@ proxy-groups:
     include-all: true
     uselightgbm: false
     collectdata: true
-    health-check:
-        enable: true
-        url: https://www.gstatic.com/generate_204
-        interval: 60
-        tolerance: 2
+    health-check: { enable: true, url: 'https://www.gstatic.com/generate_204', interval: 60, tolerance: 2 }
     strategy: sticky-sessions
     interval: 120
     proxies:
-    - 香港-手选
+      - 香港-手选
     filter: "(?=.*(广港|香港|HK|Hong Kong|🇭🇰|HongKong)).*$"
   - name: 香港-故转
     type: fallback
     interval: 120
     lazy: false
     proxies:
-    - 香港-手选
-    - 香港-智选
+      - 香港-手选
+      - 香港-智选
   - name: 香港-手选
     type: select
     include-all: true
@@ -723,23 +186,19 @@ proxy-groups:
     include-all: true
     uselightgbm: false
     collectdata: true
-    health-check:
-        enable: true
-        url: https://www.gstatic.com/generate_204
-        interval: 60
-        tolerance: 2
+    health-check: { enable: true, url: 'https://www.gstatic.com/generate_204', interval: 60, tolerance: 2 }
     strategy: sticky-sessions
     interval: 120
     proxies:
-    - 台湾-手选
+      - 台湾-手选
     filter: "(?=.*(广台|台湾|台灣|TW|Tai Wan|🇹🇼|🇨🇳|TaiWan|Taiwan)).*$"
   - name: 台湾-故转
     type: fallback
     interval: 120
     lazy: false
     proxies:
-    - 台湾-手选
-    - 台湾-智选
+      - 台湾-手选
+      - 台湾-智选
   - name: 台湾-手选
     type: select
     include-all: true
@@ -749,23 +208,19 @@ proxy-groups:
     include-all: true
     uselightgbm: false
     collectdata: true
-    health-check:
-        enable: true
-        url: https://www.gstatic.com/generate_204
-        interval: 60
-        tolerance: 2
+    health-check: { enable: true, url: 'https://www.gstatic.com/generate_204', interval: 180, tolerance: 2 }
     strategy: sticky-sessions
     interval: 120
     proxies:
-    - 新加坡-手选
+      - 新加坡-手选
     filter: "(?=.*(广新|新加坡|SG|坡|狮城|🇸🇬|Singapore)).*$"
   - name: 新加坡-故转
     type: fallback
     interval: 120
     lazy: false
     proxies:
-    - 新加坡-手选
-    - 新加坡-智选
+      - 新加坡-手选
+      - 新加坡-智选
   - name: 新加坡-手选
     type: select
     include-all: true
@@ -775,23 +230,19 @@ proxy-groups:
     include-all: true
     uselightgbm: false
     collectdata: true
-    health-check:
-        enable: true
-        url: https://www.gstatic.com/generate_204
-        interval: 60
-        tolerance: 2
+    health-check: { enable: true, url: 'https://www.gstatic.com/generate_204', interval: 180, tolerance: 2 }
     strategy: sticky-sessions
     interval: 120
     proxies:
-    - 韩国-手选
+      - 韩国-手选
     filter: "(?=.*(韩国|韓國|KR|Korea|首尔|Seoul|🇰🇷)).*$"
   - name: 韩国-故转
     type: fallback
     interval: 120
     lazy: false
     proxies:
-    - 韩国-手选
-    - 韩国-智选
+      - 韩国-手选
+      - 韩国-智选
   - name: 韩国-手选
     type: select
     include-all: true
@@ -801,23 +252,19 @@ proxy-groups:
     include-all: true
     uselightgbm: false
     collectdata: true
-    health-check:
-        enable: true
-        url: https://www.gstatic.com/generate_204
-        interval: 60
-        tolerance: 2
+    health-check: { enable: true, url: 'https://www.gstatic.com/generate_204', interval: 180, tolerance: 2 }
     strategy: sticky-sessions
     interval: 120
     proxies:
-    - 日本-手选
+      - 日本-手选
     filter: "(?=.*(广日|日本|JP|川日|东京|大阪|泉日|埼玉|沪日|深日|🇯🇵|Japan)).*$"
   - name: 日本-故转
     type: fallback
     interval: 120
     lazy: false
     proxies:
-    - 日本-手选
-    - 日本-智选
+      - 日本-手选
+      - 日本-智选
   - name: 日本-手选
     type: select
     include-all: true
@@ -827,23 +274,19 @@ proxy-groups:
     include-all: true
     uselightgbm: false
     collectdata: true
-    health-check:
-        enable: true
-        url: https://www.gstatic.com/generate_204
-        interval: 60
-        tolerance: 2
+    health-check: { enable: true, url: 'https://www.gstatic.com/generate_204', interval: 180, tolerance: 2 }
     strategy: sticky-sessions
     interval: 120
     proxies:
-    - 美国-手选
+      - 美国-手选
     filter: "(?=.*(广美|美|US|纽约|波特兰|达拉斯|俄勒|凤凰城|费利蒙|拉斯|洛杉|圣何塞|圣克拉|西雅|芝加|🇺🇸|United States)).*$"
   - name: 美国-故转
     type: fallback
     interval: 120
     lazy: false
     proxies:
-    - 美国-手选
-    - 美国-智选
+      - 美国-手选
+      - 美国-智选
   - name: 美国-手选
     type: select
     include-all: true
@@ -853,8 +296,8 @@ proxy-groups:
     interval: 120
     lazy: false
     proxies:
-    - 其他-手选
-    - 其他-智选
+      - 其他-手选
+      - 其他-智选
   - name: 其他-手选
     type: select
     include-all: true
@@ -864,19 +307,17 @@ proxy-groups:
     include-all: true
     uselightgbm: false
     collectdata: true
-    health-check:
-        enable: true
-        url: https://www.gstatic.com/generate_204
-        interval: 60
-        tolerance: 2
+    health-check: { enable: true, url: 'https://www.gstatic.com/generate_204', interval: 180, tolerance: 2 }
     strategy: sticky-sessions
     interval: 120
     proxies:
-    - 其他-手选
+      - 其他-手选
     filter: "^((?!(直连|拒绝|广港|香港|HK|Hong Kong|🇭🇰|HongKong|广台|台湾|台灣|TW|Tai Wan|🇹🇼|🇨🇳|TaiWan|Taiwan|广日|日本|JP|川日|东京|大阪|泉日|埼玉|沪日|深日|🇯🇵|Japan|广新|新加坡|SG|坡|狮城|🇸🇬|Singapore|广美|美|US|纽约|波特兰|达拉斯|俄勒|凤凰城|费利蒙|拉斯|洛杉|圣何塞|圣克拉|西雅|芝加|🇺🇸|United States|韩国|韓國|KR|Korea|首尔|Seoul|🇰🇷)).)*$"
+
+# [更新] 规则
 rules:
-  - RULE-SET,Block / Domain,Block
   - RULE-SET,TEST / Domain,AI
+  - RULE-SET,Block / Domain,Block
   - RULE-SET,ChatGPT / Domain,AI
   - RULE-SET,Claude / Domain,AI
   - RULE-SET,Meta AI / Domain,AI
@@ -903,15 +344,7 @@ rules:
   - RULE-SET,Spotify / Domain,AI
   - RULE-SET,Steam / Domain,Steam
   - DOMAIN,gemini.google.com,AI
-  - DOMAIN,api.club.gpubgm.com,PUBG MOBILE
-  - DOMAIN,sg.tdatamaster.com,PUBG MOBILE
-  - DOMAIN,ig-us-notice.igamecj.com,PUBG MOBILE
-  - DOMAIN,ig-us-sdkapi.igamecj.com,PUBG MOBILE
-  - DOMAIN,cloud.gsdk.proximabeta.com,PUBG MOBILE
-  - DOMAIN,cloud.vmp.onezapp.com,PUBG MOBILE
-  - DOMAIN,mgl.lobby.igamecj.com,PUBG MOBILE
-  - DOMAIN,napubgm.broker.amsoveasea.com,PUBG MOBILE
-  - RULE-SET,PUBG / Domain,PUBG MOBILE
+  - RULE-SET,PUBG MOBILE / Domain,PUBG MOBILE # [更新] 统一使用您的规则集
   - RULE-SET,Epic / Domain,AI
   - RULE-SET,EA / Domain,AI
   - RULE-SET,Blizzard / Domain,AI
@@ -930,11 +363,12 @@ rules:
   - RULE-SET,Nvidia / Domain,Nvidia
   - DOMAIN-KEYWORD,windsurf,AI
   - MATCH,其他
+
+# 规则提供者
 rule-anchor:
   ip: &ip {type: http, interval: 86400, behavior: ipcidr, format: mrs}
   domain: &domain {type: http, interval: 86400, behavior: domain, format: mrs}
   class: &class {type: http, interval: 86400, behavior: classical, format: text}
-
 rule-providers:
   Block / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/Gray315/DACHUAN/refs/heads/main/Block.list"}
   TEST / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Check.list"}
@@ -964,7 +398,7 @@ rule-providers:
   HBO / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/hbo.mrs"}
   Spotify / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/spotify.mrs"}
   Steam / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/steam.mrs"}
-  PUBG / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/PUBG/PUBG.list"}
+  'PUBG MOBILE / Domain': {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/Gray315/DACHUAN/refs/heads/main/PUBGMOBILE.list"} # [更新] 使用您的规则
   Epic / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Epic/Epic.list"}
   EA / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/EA/EA.list"}
   Blizzard / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Blizzard/Blizzard.list"}
@@ -983,5 +417,3 @@ rule-providers:
   Youtube / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/youtube.mrs"}
   Google / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/google.mrs"}
   Google / IP: {<<: *ip, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geoip/google.mrs"}
-
-
