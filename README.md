@@ -6,7 +6,7 @@ Meta 内核规则
 
 https://gh-proxy.com/raw.githubusercontent.com/Gray315/DACHUAN/refs/heads/main/Meta.ini
 
-Smart 内核 YAML (需开启Smart并添加Model.bin文件）
+Smart 内核 YAML (需开启Smart并添加Model.bin模型文件）
 
 https://gh-proxy.com/raw.githubusercontent.com/Gray315/DACHUAN/refs/heads/main/Smart.yaml
 
