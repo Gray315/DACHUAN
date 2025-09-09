@@ -11,9 +11,11 @@ domain:cloud.vmp.onezapp.com,PUBG MOBILE
 domain:mgl.lobby.igamecj.com,PUBG MOBILE
 domain:napubgm.broker.amsoveasea.com,PUBG MOBILE
 
-# IP 规则
-# ip-cidr:1.2.3.4/32,PUBG MOBILE
-
-# 其他规则
-# 可以根据需要添加更多规则
-# 可以根据需要添加更多规则
+# 更新时间: 2025-09-03
+# 域名规则 (DOMAIN-SUFFIX 格式)
+DOMAIN-SUFFIX,gpubgm.com
+DOMAIN-SUFFIX,tdatamaster.com
+DOMAIN-SUFFIX,igamecj.com
+DOMAIN-SUFFIX,proximabeta.com
+DOMAIN-SUFFIX,onezapp.com
+DOMAIN-SUFFIX,amsoveasea.com
