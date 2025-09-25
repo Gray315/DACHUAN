@@ -1,3 +1,7 @@
+优先IP
+
+https://ip.164746.xyz/
+
 GitHub 加速
 
 https://gh-proxy.com/
@@ -31,6 +35,4 @@ PUBG MOBILE 域名
 
 https://gh-proxy.com/raw.githubusercontent.com/Gray315/DACHUAN/refs/heads/main/PUBGMOBILE.list
 
-优先IP
 
-https://ip.164746.xyz/
